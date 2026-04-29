@@ -480,19 +480,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    let GEMINI_API_KEY = ""; 
-
-    // Fetch the API key from the backend securely
-    async function fetchConfig() {
-        try {
-            const response = await fetch('http://localhost:3000/api/config');
-            const data = await response.json();
-            GEMINI_API_KEY = data.apiKey;
-        } catch (error) {
-            console.error("Failed to load API config:", error);
-        }
-    }
-    fetchConfig();
 
     function initChatLogic() {
         const chatInput = document.getElementById('chatInput');
@@ -509,29 +496,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         async function fetchGeminiResponse(userText) {
-            if (!GEMINI_API_KEY) {
-                return "This is a demo response. To enable real AI responses, please configure your GEMINI_API_KEY in script.js!";
-            }
             try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+                const response = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: "You are an expert on the Indian Election Process. Answer briefly and simply. User asked: " + userText }] }]
-                    })
+                    body: JSON.stringify({ userText })
                 });
+                
                 const data = await response.json();
-                if (data.candidates && data.candidates[0].content) {
-                    return data.candidates[0].content.parts[0].text;
-                } else if (data.error) {
-                    console.error("Gemini API Error:", data.error);
-                    return "API Error: " + data.error.message;
+                
+                if (response.ok) {
+                    return data.text;
+                } else {
+                    console.error("Server Error:", data.error);
+                    return "API Error: " + data.error;
                 }
-                console.error("Unexpected response:", data);
-                return "Sorry, I couldn't understand the response from the server.";
             } catch (err) {
-                console.error(err);
-                return "Sorry, there was an error connecting to the AI.";
+                console.error("Fetch Error:", err);
+                return "Sorry, I couldn't reach the server. Please check your connection.";
             }
         }
 
