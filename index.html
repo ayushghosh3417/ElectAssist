@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectAssist | Your Election Process Guide</title>
+    <meta name="description" content="An interactive assistant to help you understand the election process, timelines, and steps.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Preloader Animation -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo-wrapper">
+                <div class="preloader-logo">
+                    <i class="fa-solid fa-check-to-slot"></i>
+                </div>
+            </div>
+            <div class="preloader-text-wrapper">
+                <h1 class="preloader-text">ElectAssist</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="background-effects">
+        <div id="parallax-bg" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; will-change: transform;">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <div class="blob blob-4"></div>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <header class="app-header glass">
+            <div class="logo">
+                <i class="fa-solid fa-check-to-slot"></i>
+                <h1>ElectAssist</h1>
+            </div>
+            <nav class="nav-links">
+                <button id="homeBtn" class="nav-btn active">Home</button>
+                <button id="timelineBtn" class="nav-btn">Timeline</button>
+                <button id="aboutBtn" class="nav-btn">About</button>
+                <button id="helpBtn" class="nav-btn">Help <i class="fa-solid fa-sparkles" style="font-size: 0.8rem; margin-left: 4px;"></i></button>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <section class="assistant-section">
+                <div class="assistant-panel glass">
+                    <div class="assistant-avatar-container">
+                        <div class="assistant-avatar">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <div class="pulse-ring"></div>
+                    </div>
+                    <div class="assistant-dialogue">
+                        <div class="typing-indicator hidden" id="typingIndicator">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="message-content" id="assistantMessage">
+                            <h2 class="welcome-title">Hello! I'm ElectAssist.</h2>
+                            <p>I'm here to demystify the election process for you. Whether you're a first-time voter or just need a refresher on the timeline, I've got you covered.</p>
+                            <p class="prompt-text">What would you like to learn about today?</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="interactive-section">
+                <!-- Topics Grid -->
+                <div class="topics-grid" id="topicsGrid">
+                    <button class="topic-card glass-hover" data-topic="registration">
+                        <div class="card-icon"><i class="fa-solid fa-id-card"></i></div>
+                        <h3>Voter Registration</h3>
+                        <p>Learn how, when, and where to register to vote.</p>
+                    </button>
+                    
+                    <button class="topic-card glass-hover" data-topic="timeline">
+                        <div class="card-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                        <h3>Election Timeline</h3>
+                        <p>Key dates, from primaries to general election day.</p>
+                    </button>
+                    
+                    <button class="topic-card glass-hover" data-topic="methods">
+                        <div class="card-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+                        <h3>Ways to Vote</h3>
+                        <p>In-person, mail-in, and early voting explained.</p>
+                    </button>
+                    
+                    <button class="topic-card glass-hover" data-topic="faq">
+                        <div class="card-icon"><i class="fa-solid fa-circle-question"></i></div>
+                        <h3>Common Questions</h3>
+                        <p>Answers to the most frequently asked questions.</p>
+                    </button>
+
+                    <button class="topic-card glass-hover" data-topic="search_roll">
+                        <div class="card-icon"><i class="fa-solid fa-magnifying-glass-location"></i></div>
+                        <h3>Search Electoral Roll</h3>
+                        <p>Verify your name and find your polling booth details.</p>
+                    </button>
+
+                    <button class="topic-card glass-hover" data-topic="forms">
+                        <div class="card-icon"><i class="fa-solid fa-file-signature"></i></div>
+                        <h3>Forms & Services</h3>
+                        <p>Learn about Form 6, Form 8, and downloading e-EPIC.</p>
+                    </button>
+
+                    <button class="topic-card glass-hover" data-topic="track_status">
+                        <div class="card-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                        <h3>Track Status</h3>
+                        <p>Track your voter ID application or correction status.</p>
+                    </button>
+
+                    <button class="topic-card glass-hover" data-topic="cvigil">
+                        <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h3>cVIGIL App</h3>
+                        <p>Report Model Code of Conduct violations instantly.</p>
+                    </button>
+
+                    <button class="topic-card glass-hover" data-topic="kyc">
+                        <div class="card-icon"><i class="fa-solid fa-user-check"></i></div>
+                        <h3>Know Your Candidate (KYC)</h3>
+                        <p>View details and criminal antecedents of contesting candidates.</p>
+                    </button>
+                </div>
+
+                <!-- Dynamic Content Display -->
+                <div class="content-display glass hidden" id="contentDisplay">
+                    <div class="content-header">
+                        <button class="back-btn" id="backBtn">
+                            <i class="fa-solid fa-arrow-left"></i> Back
+                        </button>
+                        <h2 id="contentTitle">Topic Title</h2>
+                    </div>
+                    <div class="content-body" id="contentBody">
+                        <!-- Content injected via JS -->
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="app-footer glass">
+            <p>&copy; 2026 ElectAssist Educational Platform. Information provided is for educational purposes.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
