@@ -480,7 +480,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const GEMINI_API_KEY = "AIzaSyDOLsHMJRMJpNTd0EKnw8ce70pbkw6o59k"; // ENTER YOUR GEMINI API KEY HERE
+    let GEMINI_API_KEY = ""; 
+
+    // Fetch the API key from the backend securely
+    async function fetchConfig() {
+        try {
+            const response = await fetch('http://localhost:3000/api/config');
+            const data = await response.json();
+            GEMINI_API_KEY = data.apiKey;
+        } catch (error) {
+            console.error("Failed to load API config:", error);
+        }
+    }
+    fetchConfig();
 
     function initChatLogic() {
         const chatInput = document.getElementById('chatInput');
