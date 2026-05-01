@@ -4,6 +4,9 @@
   "description": "ElectAssist is a modern, interactive web application designed to demystify the election process for citizens. Built with a premium, square-edged \"White and Ocean Blue\" glass-morphic design, the platform provides educational modules on voting procedures and features an integrated AI assistant to answer any election-related questions in real-time.",
   "main": "script.js",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
