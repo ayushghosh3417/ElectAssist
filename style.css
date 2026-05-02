@@ -857,12 +857,24 @@ body {
 }
 
 /* --- Responsive Design --- */
+@media (max-width: 1024px) {
+    .main-content {
+        grid-template-columns: 320px 1fr;
+        gap: 1.5rem;
+    }
+}
+
 @media (max-width: 991px) {
+    .main-content {
+        display: flex;
+        flex-direction: column;
+    }
     .assistant-panel {
         position: relative;
         top: 0;
         height: auto;
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
+        order: -1; /* Puts the AI assistant at the top on smaller screens */
     }
 }
 
@@ -873,8 +885,17 @@ body {
 
     .app-header {
         flex-direction: column;
-        gap: 1.25rem;
-        padding: 1.5rem;
+        gap: 1rem;
+        padding: 1.5rem 1rem;
+        align-items: stretch;
+    }
+
+    .logo {
+        justify-content: center;
+    }
+
+    .logo h1 {
+        font-size: 1.5rem;
     }
 
     .nav-links {
@@ -882,9 +903,9 @@ body {
         overflow-x: auto;
         justify-content: flex-start;
         padding: 0.5rem;
-        /* Hide scrollbar for a cleaner look */
         scrollbar-width: none;
         -ms-overflow-style: none;
+        -webkit-overflow-scrolling: touch;
     }
 
     .nav-links::-webkit-scrollbar {
@@ -893,7 +914,7 @@ body {
 
     .nav-btn {
         white-space: nowrap;
-        padding: 0.6rem 1rem;
+        padding: 0.65rem 1rem;
         font-size: 0.85rem;
     }
 
@@ -917,12 +938,156 @@ body {
         gap: 1rem;
     }
     
+    .content-header h2 {
+        font-size: 1.4rem;
+    }
+
     .chat-container {
-        height: 60vh;
-        min-height: 400px;
+        height: auto;
+        min-height: 320px;
     }
     
     .assistant-panel {
         padding: 1.5rem;
+        width: 100%;
+    }
+
+    .step-card {
+        flex-direction: column;
+        padding: 1.25rem;
+        gap: 1rem;
+    }
+    
+    .info-box {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .topics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .topic-card {
+        padding: 1.75rem 1.5rem;
+    }
+
+    .chat-input-area {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .chat-input {
+        min-width: 0;
+    }
+
+    .chat-action-btn {
+        width: 45px;
+        height: 45px;
+    }
+
+    .feature-image {
+        max-width: 100%;
+    }
+
+    .timeline {
+        padding-left: 1rem;
+    }
+
+    .timeline::before {
+        left: 8px;
+    }
+
+    .timeline-item::before {
+        left: -1.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-container {
+        padding: 0.5rem;
+    }
+
+    .app-header {
+        padding: 1rem;
+    }
+
+    .logo {
+        gap: 0.5rem;
+    }
+
+    .logo h1 {
+        font-size: 1.35rem;
+    }
+
+    .nav-links {
+        padding: 0.4rem;
+    }
+
+    .nav-btn {
+        padding: 0.55rem 0.9rem;
+        font-size: 0.82rem;
+    }
+
+    .assistant-panel {
+        padding: 1.25rem;
+    }
+
+    .assistant-avatar-container {
+        width: 70px;
+        height: 70px;
+    }
+
+    .preloader-text {
+        font-size: 2rem;
+    }
+
+    .preloader-logo {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .content-display {
+        padding: 1.25rem;
+    }
+
+    .content-header h2 {
+        font-size: 1.25rem;
+    }
+
+    .topic-card {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .chat-message {
+        max-width: 90%;
+    }
+
+    .content-body,
+    .step-details p,
+    .timeline-content p,
+    .chat-message {
+        font-size: 0.95rem;
+    }
+
+    .step-card {
+        gap: 0.75rem;
+    }
+
+    .step-number {
+        font-size: 2rem;
+    }
+
+    .info-box {
+        padding: 0.9rem;
+    }
+
+    .chat-input-area {
+        padding: 0.75rem;
+    }
+
+    .chat-input,
+    .chat-action-btn {
+        font-size: 0.95rem;
     }
 }
